@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "users")
 public class AppUser implements UserDetails {
+	
 
 	@Id
 	private String id;
@@ -31,10 +33,14 @@ public class AppUser implements UserDetails {
 	public AppUser(@NotEmpty String email, @NotEmpty String password,@NotEmpty String name) {
 		this.name=name;
 		this.email = email;
+		
 		this.password = password;
 		this.created=new Date();
 	}
-
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
